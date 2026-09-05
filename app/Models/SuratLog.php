@@ -12,4 +12,9 @@ class SuratLog extends Model
     {
         return $this->belongsTo(Surat::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
