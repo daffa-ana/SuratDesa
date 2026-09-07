@@ -14,7 +14,7 @@
     <main class="login-layout">
         <section class="login-intro">
             <a href="{{ route('welcome') }}" class="login-brand">
-                <img class="brand-mark" src="https://png.pngtree.com/png-clipart/20220720/original/pngtree-garuda-indonesia-illustration-with-red-and-white-wavy-flag-png-image_8388212.png" alt="Ilustrasi Garuda Indonesia">
+                <img class="brand-mark" src="{{ asset('images/desa-logo.svg') }}" alt="Logo Desa Batujajar Barat">
                 <span><strong>Desa Batujajar</strong><small>Barat · Portal warga</small></span>
             </a>
             <p class="eyebrow">Sistem administrasi desa</p>

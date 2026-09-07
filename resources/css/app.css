@@ -103,6 +103,107 @@ body {
     box-shadow: 0 14px 30px rgba(24, 51, 43, .10);
 }
 
+.stats-grid .stat-card {
+    border-top: 3px solid #dce9df;
+}
+
+.stats-grid .stat-card:nth-child(2) {
+    border-top-color: #f3c969;
+}
+
+.stats-grid .stat-card:nth-child(3) {
+    border-top-color: #2c8a61;
+}
+
+.dashboard-filters {
+    display: flex;
+    align-items: center;
+    gap: .65rem;
+    flex-wrap: wrap;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #edf2ee;
+    background: #fbfdfb;
+}
+
+.filter-search {
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+    flex: 1 1 15rem;
+    min-width: 13rem;
+    padding: .55rem .75rem;
+    border: 1px solid #dbe5dd;
+    border-radius: .55rem;
+    background: #fff;
+    color: #819087;
+}
+
+.filter-search:focus-within {
+    border-color: #2c8a61;
+    box-shadow: 0 0 0 3px rgba(44, 138, 97, .12);
+}
+
+.filter-search span {
+    font-size: 1.1rem;
+    line-height: 1;
+}
+
+.filter-search input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: #18332b;
+    font-size: .78rem;
+}
+
+.dashboard-filters select {
+    min-width: 9.5rem;
+    padding: .63rem .75rem;
+    border: 1px solid #dbe5dd;
+    border-radius: .55rem;
+    outline: 0;
+    background: #fff;
+    color: #475569;
+    font-size: .75rem;
+}
+
+.dashboard-filters select:focus {
+    border-color: #2c8a61;
+}
+
+.filter-button,
+.filter-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.35rem;
+    padding: .55rem .8rem;
+    border-radius: .55rem;
+    font-size: .74rem;
+    font-weight: 700;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.filter-button {
+    border: 1px solid #17624c;
+    background: #17624c;
+    color: #fff;
+}
+
+.filter-button:hover {
+    background: #145640;
+}
+
+.filter-reset {
+    color: #c96745;
+}
+
+.filter-reset:hover {
+    text-decoration: underline;
+}
+
 .table-shell {
     box-shadow: 0 18px 50px rgba(24, 51, 43, .08);
 }
@@ -1096,6 +1197,9 @@ body {
     .identity-list div { grid-template-columns:7rem 1fr; font-size:.77rem; }
     .review-status { align-items:flex-start; flex-direction:column; gap:.35rem; }
     .dashboard-table-wrap:after { content:'Geser untuk melihat aksi →'; display:block; padding:.55rem 1rem; color:#819087; background:#f8fbf7; font-size:.68rem; text-align:right; }
+    .dashboard-filters { align-items: stretch; padding: .85rem 1rem; }
+    .filter-search, .dashboard-filters select, .filter-button { width: 100%; min-width: 0; }
+    .filter-reset { align-self: center; }
     .manual-grid { grid-template-columns: 1fr; }
     .login-layout { grid-template-columns: 1fr; padding: 1.5rem; gap: 2rem; }
     .login-intro { padding: 1rem 0 0; }

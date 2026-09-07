@@ -12,7 +12,7 @@ use Illuminate\View\View;
 
 class SuratController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $user = request()->user();
         $query = Surat::with('penduduk')->latest('tanggal_pengajuan');
@@ -20,10 +20,46 @@ class SuratController extends Controller
             $query->whereHas('penduduk', fn ($penduduk) => $penduduk->where('user_id', $user->id));
         }
 
+        $search = trim($request->string('q')->toString());
+        $status = $request->string('status')->toString();
+        $jenis = $request->string('jenis')->toString();
+
+        if ($search !== '') {
+            $query->where(function ($builder) use ($search) {
+                $builder
+                    ->where('nomor_surat', 'like', '%' . $search . '%')
+                    ->orWhereHas('penduduk', function ($penduduk) use ($search) {
+                        $penduduk
+                            ->where('nama', 'like', '%' . $search . '%')
+                            ->orWhere('nik', 'like', '%' . $search . '%');
+                    });
+            });
+        }
+
+        if (in_array($status, ['pending', 'rt_approved', 'rw_approved', 'finalized', 'rejected', 'rt_rejected', 'rw_rejected'], true)) {
+            $query->where('status', $status);
+        } else {
+            $status = '';
+        }
+
+        if (array_key_exists($jenis, config('surat.prefixes'))) {
+            $query->where('jenis_surat', $jenis);
+        } else {
+            $jenis = '';
+        }
+
+        $summaryQuery = clone $query;
+
         return view('surat.index', [
             'surat' => $query->paginate(10),
             'jenisSurat' => config('surat.prefixes'),
             'user' => $user,
+            'filters' => compact('search', 'status', 'jenis'),
+            'summary' => [
+                'total' => (clone $summaryQuery)->count(),
+                'diproses' => (clone $summaryQuery)->whereIn('status', ['pending', 'rt_approved', 'rw_approved'])->count(),
+                'selesai' => (clone $summaryQuery)->where('status', 'finalized')->count(),
+            ],
         ]);
     }
 
