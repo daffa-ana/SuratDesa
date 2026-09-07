@@ -44,6 +44,64 @@
             </div>
         </section>
 
+        <section class="stats-showcase" aria-label="Ringkasan layanan desa">
+            <div class="public-container stats-wrap">
+                <div class="stats-header">
+                    <div>
+                        <p class="public-eyebrow">Desa di angka</p>
+                        <h2>Pelayanan yang mudah dipantau, makin dekat dengan warga.</h2>
+                    </div>
+                    <a href="{{ auth()->check() ? route('surat.index') : route('login') }}" class="primary-action small-action">Ajukan surat sekarang</a>
+                </div>
+
+                <div class="stats-grid">
+                    <article class="feature-stat feature-stat-highlight">
+                        <span class="stat-kicker">Layanan aktif</span>
+                        <strong>3.280</strong>
+                        <p>Warga telah memanfaatkan layanan administrasi desa secara digital.</p>
+                    </article>
+                    <article class="feature-stat">
+                        <span class="stat-kicker">Proses cepat</span>
+                        <strong>1,8 hari</strong>
+                        <p>Rata-rata waktu penyelesaian surat dari pengajuan hingga selesai.</p>
+                    </article>
+                    <article class="feature-stat">
+                        <span class="stat-kicker">Program desa</span>
+                        <strong>24</strong>
+                        <p>Berbagai program dan kegiatan yang hadir untuk kebutuhan masyarakat.</p>
+                    </article>
+                    <article class="feature-stat">
+                        <span class="stat-kicker">Kepuasan warga</span>
+                        <strong>96%</strong>
+                        <p>Respon positif dari warga terhadap pelayanan yang diberikan.</p>
+                    </article>
+                </div>
+
+                <div class="mini-feature-panel">
+                    <div class="agenda-card">
+                        <div class="agenda-header">
+                            <span class="agenda-badge">Agenda desa</span>
+                            <span class="agenda-date">Jumat, 12 Sep</span>
+                        </div>
+                        <h3>Posyandu dan pelayanan masyarakat</h3>
+                        <ul>
+                            <li>08.00 - Pemeriksaan kesehatan balita</li>
+                            <li>10.00 - Pelayanan administrasi warga</li>
+                            <li>13.00 - Pembinaan kelompok usaha desa</li>
+                        </ul>
+                    </div>
+
+                    <div class="quick-badges" aria-label="Fitur cepat">
+                        <span class="pill-item">Sertifikat</span>
+                        <span class="pill-item">Domisili</span>
+                        <span class="pill-item">Usaha</span>
+                        <span class="pill-item">Keterangan</span>
+                        <span class="pill-item">Pengantar</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="layanan" class="public-section services-section">
             <div class="public-container">
                 <div class="section-heading"><div><p class="public-eyebrow">Yang bisa Anda lakukan</p><h2>Layanan untuk kebutuhan sehari-hari.</h2></div><p>Mulai dari rumah. Pantau prosesnya. Datang hanya saat diperlukan.</p></div>
