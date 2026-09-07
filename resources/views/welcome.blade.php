@@ -6,6 +6,7 @@
     <meta name="description" content="Portal layanan dan informasi Desa Batujajar Barat.">
     <title>Desa Batujajar Barat | Layanan Warga</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="stylesheet" href="{{ asset('css/news.css') }}">
 </head>
 <body class="public-page">
     <header class="public-header">
@@ -51,6 +52,26 @@
                     <a href="{{ auth()->check() ? route('surat.index') : route('login') }}" class="service-card service-featured"><span class="service-icon">01</span><div><h3>Lihat surat</h3><p>Cek riwayat dan status surat Anda, lalu ajukan surat domisili, usaha, atau pengantar secara online.</p><span class="service-link">Buka daftar surat <b>→</b></span></div></a>
                     <div class="service-card"><span class="service-icon service-icon-light">02</span><div><h3>Pantau status</h3><p>Lihat riwayat pengajuan dan keputusan RT, RW, hingga perangkat desa dalam satu tempat.</p></div></div>
                     <div class="service-card"><span class="service-icon service-icon-light">03</span><div><h3>Informasi desa</h3><p>Dapatkan kabar pelayanan, jam operasional, dan informasi penting untuk warga.</p></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="berita" class="public-section news-section">
+            <div class="public-container">
+                <div class="section-heading"><div><p class="public-eyebrow">Informasi terkini</p><h2>Berita Desa</h2></div><p>Kabar pembangunan, kegiatan, dan pelayanan terbaru untuk warga Batujajar Barat.</p></div>
+                <div class="news-grid">
+                    <article class="news-card">
+                        <img src="https://images.unsplash.com/photo-1544644181-af0e1e14916f?w=700&h=450&fit=crop&auto=format" alt="Pembangunan desa">
+                        <div class="news-card-body"><small>Pembangunan · 3 September 2026</small><h3>Renovasi Jalan Desa Blok Cibatu Selesai Dikerjakan</h3><p>Proyek perbaikan jalan sepanjang 1,2 km telah rampung dan siap digunakan warga.</p><a href="#berita">Baca selengkapnya <span>→</span></a></div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://images.unsplash.com/photo-1572908721147-0a9eb395762d?w=700&h=450&fit=crop&auto=format" alt="Kegiatan posyandu">
+                        <div class="news-card-body"><small>Kesehatan · 27 Agustus 2026</small><h3>Posyandu Balita Rutin Dilaksanakan di RW 04</h3><p>Warga mendapatkan pelayanan imunisasi, penimbangan, dan penyuluhan gizi.</p><a href="#berita">Baca selengkapnya <span>→</span></a></div>
+                    </article>
+                    <article class="news-card">
+                        <img src="https://images.unsplash.com/photo-1608335715837-1994a535d5c3?w=700&h=450&fit=crop&auto=format" alt="Kegiatan kemerdekaan desa">
+                        <div class="news-card-body"><small>Kegiatan · 15 Agustus 2026</small><h3>Peringatan HUT RI ke-81 Meriah di Lapangan Desa</h3><p>Berbagai lomba tradisional dan budaya Sunda meramaikan hari kemerdekaan.</p><a href="#berita">Baca selengkapnya <span>→</span></a></div>
+                    </article>
                 </div>
             </div>
         </section>
