@@ -14,7 +14,7 @@
     <header class="public-header">
         <div class="public-container public-nav">
             <a href="{{ route('welcome') }}" class="public-brand" aria-label="Beranda Desa Batujajar Barat">
-                <img class="brand-mark" src="https://png.pngtree.com/png-clipart/20220720/original/pngtree-garuda-indonesia-illustration-with-red-and-white-wavy-flag-png-image_8388212.png" alt="Ilustrasi Garuda Indonesia">
+                <img class="brand-mark" src="{{ asset('images/desa-logo.svg') }}" alt="Logo Desa Batujajar Barat">
                 <span><strong>Desa Batujajar</strong><small>Barat · Kabupaten Bandung Barat</small></span>
             </a>
             <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -115,10 +115,11 @@
         @endif
 
         <section class="stats-grid grid gap-4 sm:grid-cols-3">
-            @foreach ([['label' => 'Total surat', 'value' => $surat->total(), 'color' => 'text-slate-900'], ['label' => 'Halaman aktif', 'value' => $surat->currentPage(), 'color' => 'text-amber-700'], ['label' => 'Jenis surat', 'value' => count($jenisSurat), 'color' => 'text-[#17624c]']] as $stat)
+            @foreach ([['label' => 'Total ditemukan', 'value' => $summary['total'], 'hint' => 'sesuai filter saat ini', 'color' => 'text-slate-900'], ['label' => 'Sedang diproses', 'value' => $summary['diproses'], 'hint' => 'menunggu verifikasi', 'color' => 'text-amber-700'], ['label' => 'Sudah selesai', 'value' => $summary['selesai'], 'hint' => 'siap digunakan', 'color' => 'text-[#17624c]']] as $stat)
                 <div class="stat-card rounded-xl border border-slate-200/80 bg-white p-5 shadow-sm">
                     <p class="text-sm text-slate-500">{{ $stat['label'] }}</p>
                     <p class="mt-2 text-3xl font-bold {{ $stat['color'] }}">{{ $stat['value'] }}</p>
+                    <p class="mt-1 text-xs text-slate-400">{{ $stat['hint'] }}</p>
                 </div>
             @endforeach
         </section>
@@ -128,6 +129,28 @@
                 <h2 class="font-semibold">{{ $user->isRole('penduduk') ? 'Riwayat pengajuan saya' : 'Pengajuan yang perlu diproses' }}</h2>
                 <form method="POST" action="{{ route('logout') }}" class="hidden sm:block">@csrf<button type="submit" class="logout-button">Keluar</button></form>
             </div>
+            <form method="GET" action="{{ route('surat.index') }}" class="dashboard-filters">
+                <label class="filter-search">
+                    <span aria-hidden="true">⌕</span>
+                    <input type="search" name="q" value="{{ $filters['search'] }}" placeholder="Cari nomor, nama, atau NIK..." aria-label="Cari surat">
+                </label>
+                <select name="status" aria-label="Filter status">
+                    <option value="">Semua status</option>
+                    @foreach (['pending' => 'Menunggu RT', 'rt_approved' => 'Menunggu RW', 'rw_approved' => 'Menunggu admin', 'finalized' => 'Selesai', 'rejected' => 'Ditolak', 'rt_rejected' => 'Ditolak RT', 'rw_rejected' => 'Ditolak RW'] as $key => $label)
+                        <option value="{{ $key }}" @selected($filters['status'] === $key)>{{ $label }}</option>
+                    @endforeach
+                </select>
+                <select name="jenis" aria-label="Filter jenis surat">
+                    <option value="">Semua jenis surat</option>
+                    @foreach ($jenisSurat as $key => $prefix)
+                        <option value="{{ $key }}" @selected($filters['jenis'] === $key)>{{ str_replace('_', ' ', ucfirst($key)) }}</option>
+                    @endforeach
+                </select>
+                <button type="submit" class="filter-button">Terapkan</button>
+                @if ($filters['search'] || $filters['status'] || $filters['jenis'])
+                    <a href="{{ route('surat.index') }}" class="filter-reset">Reset</a>
+                @endif
+            </form>
             <div class="dashboard-table-wrap overflow-x-auto">
                 <table class="min-w-full text-left text-sm">
                     <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500">
@@ -172,7 +195,7 @@
                 </table>
             </div>
             @if ($surat->hasPages())
-                <div class="border-t border-slate-200 px-5 py-4">{{ $surat->links() }}</div>
+                <div class="border-t border-slate-200 px-5 py-4">{{ $surat->withQueryString()->links() }}</div>
             @endif
         </section>
     </main>
