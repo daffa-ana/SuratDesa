@@ -11,7 +11,18 @@
 }
 
 .public-brand {
+    display: inline-flex;
+    align-items: center;
     gap: .8rem;
+}
+
+.public-brand .brand-mark {
+    display: block;
+    flex: 0 0 2.65rem;
+    width: 2.65rem;
+    height: 2.65rem;
+    object-fit: contain;
+    border-radius: .75rem;
 }
 
 .public-brand > span:last-child {

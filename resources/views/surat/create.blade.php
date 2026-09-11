@@ -15,7 +15,7 @@
     <header class="public-header">
         <div class="public-container public-nav">
             <a href="{{ route('welcome') }}" class="public-brand" aria-label="Beranda Desa Batujajar Barat">
-                <img class="brand-mark" src="{{ asset('images/desa-logo.svg') }}" alt="Logo Desa Batujajar Barat">
+                <img class="brand-mark" src="{{ asset('images/logo-batujajar-barat.png') }}" alt="Logo Desa Batujajar Barat">
                 <span><strong>Desa Batujajar</strong><small>Barat · Kabupaten Bandung Barat</small></span>
             </a>
             <nav class="desktop-nav" aria-label="Navigasi utama">

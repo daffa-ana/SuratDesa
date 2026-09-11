@@ -15,7 +15,7 @@
     <header class="public-header">
         <div class="public-container public-nav">
             <a href="{{ route('welcome') }}" class="public-brand" aria-label="Beranda Desa Batujajar Barat">
-                <img class="brand-mark" src="{{ asset('images/desa-logo.svg') }}" alt="Logo Desa Batujajar Barat">
+                <img class="brand-mark" src="{{ asset('images/logo-batujajar-barat.png') }}" alt="Logo Desa Batujajar Barat">
                 <span><strong>Desa Batujajar</strong><small>Barat · Kabupaten Bandung Barat</small></span>
             </a>
             <nav class="desktop-nav" aria-label="Navigasi utama">
@@ -41,7 +41,7 @@
         <aside class="mobile-nav" id="mobileNav">
             <div class="mobile-nav-header">
                 <div class="flex items-center gap-3">
-                    <div class="role-mark flex h-10 w-10 items-center justify-center rounded-xl bg-[#17624c] text-lg text-white">{{ strtoupper(substr($user->role, 0, 2)) }}</div>
+                    <img class="h-10 w-10 rounded-xl object-contain" src="{{ asset('images/logo-batujajar-barat.png') }}" alt="Logo Desa Batujajar Barat">
                     <div>
                         <p class="text-xs font-bold uppercase tracking-[0.15em] text-[#17624c]">{{ $user->name }}</p>
                         <p class="text-xs font-semibold text-slate-500">Desa Batujajar Barat</p>
