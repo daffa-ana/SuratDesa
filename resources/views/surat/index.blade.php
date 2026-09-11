@@ -9,6 +9,7 @@
     @else
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     @endif
+        <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
 </head>
 <body class="dashboard-shell role-dashboard role-{{ $user->role }} min-h-screen text-slate-900">
     <header class="public-header">

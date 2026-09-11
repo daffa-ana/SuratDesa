@@ -15,35 +15,52 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        User::updateOrCreate(
+            ['email' => 'test@example.com'],
+            [
+                'name' => 'Test User',
+                'email_verified_at' => now(),
+                'password' => bcrypt('password'),
+                'role' => 'admin',
+            ]
+        );
 
-        $user = User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'role' => 'admin',
-        ]);
+        User::updateOrCreate(
+            ['email' => 'rt@example.com'],
+            ['name' => 'Ketua RT 001', 'password' => bcrypt('password'), 'role' => 'rt', 'email_verified_at' => now()]
+        );
 
-        User::factory()->create(['name' => 'Ketua RT 001', 'email' => 'rt@example.com', 'role' => 'rt']);
-        User::factory()->create(['name' => 'Ketua RW 001', 'email' => 'rw@example.com', 'role' => 'rw']);
-        $pendudukUser = User::factory()->create(['name' => 'Budi Santoso', 'email' => 'penduduk@example.com', 'role' => 'penduduk']);
+        User::updateOrCreate(
+            ['email' => 'rw@example.com'],
+            ['name' => 'Ketua RW 001', 'password' => bcrypt('password'), 'role' => 'rw', 'email_verified_at' => now()]
+        );
 
-        $penduduk = Penduduk::create([
-            'nik' => '3273010101010001',
-            'nama' => 'Budi Santoso',
-            'jenis_kelamin' => 'L',
-            'tanggal_lahir' => '1990-01-01',
-            'alamat' => 'Dusun Sukamaju RT 01 RW 01',
-            'rt' => '001',
-            'rw' => '001',
-            'pekerjaan' => 'Wiraswasta',
-            'user_id' => $pendudukUser->id,
-        ]);
+        $pendudukUser = User::updateOrCreate(
+            ['email' => 'penduduk@example.com'],
+            ['name' => 'Budi Santoso', 'password' => bcrypt('password'), 'role' => 'penduduk', 'email_verified_at' => now()]
+        );
 
-        Surat::create([
-            'nomor_surat' => 'SKD/001/' . now()->format('m/Y'),
-            'jenis_surat' => 'domisili',
-            'penduduk_id' => $penduduk->id,
-            'keperluan' => 'Keperluan administrasi warga',
-        ]);
+        $penduduk = Penduduk::firstOrCreate(
+            ['nik' => '3273010101010001'],
+            [
+                'nama' => 'Budi Santoso',
+                'jenis_kelamin' => 'L',
+                'tanggal_lahir' => '1990-01-01',
+                'alamat' => 'Dusun Sukamaju RT 01 RW 01',
+                'rt' => '001',
+                'rw' => '001',
+                'pekerjaan' => 'Wiraswasta',
+                'user_id' => $pendudukUser->id,
+            ]
+        );
+
+        Surat::firstOrCreate(
+            ['nomor_surat' => 'SKD/001/' . now()->format('m/Y')],
+            [
+                'jenis_surat' => 'domisili',
+                'penduduk_id' => $penduduk->id,
+                'keperluan' => 'Keperluan administrasi warga',
+            ]
+        );
     }
 }

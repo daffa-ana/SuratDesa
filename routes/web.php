@@ -7,6 +7,7 @@ use App\Http\Controllers\NotificationController;
 
 Route::get('/', fn () => response()->view('welcome'))->name('welcome');
 Route::get('/profil-desa', fn () => response()->view('profil-desa'))->name('profil-desa');
+Route::get('/berita', fn () => response()->view('berita'))->name('berita');
 Route::get('/login', [AuthController::class, 'create'])->name('login');
 Route::post('/login', [AuthController::class, 'store'])->name('login.store');
 Route::get('/auth/google/redirect', [AuthController::class, 'redirectToGoogle'])->name('google.redirect');
